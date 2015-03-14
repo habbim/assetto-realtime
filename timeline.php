@@ -7,7 +7,7 @@ if(empty($json)){
     echo "Cerrado";
     exit;
 }else{
-    echo "<img style='text-align: center' src='http://i38.servimg.com/u/f38/11/97/29/20/l4b510.jpg'></img><br><b>Abierto</b><br>";
+    echo "Abierto<br>";
 }
 echo "<b><u>Nombre de la sala</u><br>".$state["name"]."<br>";
 echo "<u>Circuito</u><br> ".$state["track"]."<br>";

@@ -6,9 +6,8 @@ $entry = @file_get_contents("http://localhost:8098/ENTRY|".rand(10000,99999));
 if(empty($json)){
     echo "Cerrado";
     exit;
-}else{
+}else
     echo "Abierto<br>";
-}
 echo "<b><u>Nombre de la sala</u><br>".$state["name"]."<br>";
 echo "<u>Circuito</u><br> ".$state["track"]."<br>";
 echo "<u>Pilotos conectados</u></b><br>";
@@ -19,9 +18,9 @@ foreach ($json["Cars"] as $clave => $valor) {
         echo $valor["DriverName"]."<br>";
     }
 }
-if($drivers == 0){
+if($drivers == 0)
     echo "**No hay pilotos en este momento**";
-}else{
+else{
     $dom = new DOMe("div");
     $dom->importHTML($entry);
     $rows = $dom->getElementsByTagName("tr");
@@ -29,9 +28,8 @@ if($drivers == 0){
     foreach ($rows as $row) {
         $cells = $row->getElementsByTagName("td");
         $cellData = array();
-        foreach ($cells as $cell) {
+        foreach ($cells as $cell)
             $cellData[] = trim($cell->generate());
-        }
         $data[] = $cellData;
     }
     $entry_data = array();
@@ -49,7 +47,6 @@ if($drivers == 0){
                 continue;
                 break;
             default:
-
                 if($table == "entry" && $entry1[4] == "DC" || $table == "pos" && $entry1[5] == "16666:39:999")
                     continue;
                 if($table == "pos"){
@@ -68,6 +65,5 @@ if($drivers == 0){
         }
         echo "</table>";
     }
-
 }
 ?>

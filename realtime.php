@@ -50,7 +50,7 @@ $drivers = 0;
 foreach ($entry_data["entry"] as $clave => $valor) {
     if(!empty($valor["1"]){
         $drivers++;
-        echo $valor["1"]." - ".$valor["8"]."<br>";
+        echo $valor[1]." - ".$valor[8]."<br>";
     }
 }
 if($drivers == 0)

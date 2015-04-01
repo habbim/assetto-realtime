@@ -1,26 +1,15 @@
 <?php
 include("table2arr.php");
-$json = @json_decode(file_get_contents("http://localhost:8098/JSON|".rand(10000,99999)),true);
 $state = @json_decode(file_get_contents("http://localhost:8098/INFO|".rand(10000,99999)),true);
 $entry = @file_get_contents("http://localhost:8098/ENTRY|".rand(10000,99999));
 if(empty($json)){
-    echo "Cerrado";
+    echo "Closed";
     exit;
 }else
-    echo "Abierto<br>";
-echo "<b><u>Nombre de la sala</u><br>".$state["name"]."<br>";
-echo "<u>Circuito</u><br> ".$state["track"]."<br>";
-echo "<u>Pilotos conectados</u></b><br>";
-$drivers = 0;
-foreach ($json["Cars"] as $clave => $valor) {
-    if(!empty($valor["DriverName"] && $valor["IsConnected"])){
-        $drivers++;
-        echo $valor["DriverName"]."<br>";
-    }
-}
-if($drivers == 0)
-    echo "**No hay pilotos en este momento**";
-else{
+    echo "Open<br>";
+echo "<b><u>Room Name</u><br>".$state["name"]."<br>";
+echo "<u>Track</u><br> ".$state["track"]."<br>";
+echo "<u>Online Users</u></b><br>";
     $dom = new DOMe("div");
     $dom->importHTML($entry);
     $rows = $dom->getElementsByTagName("tr");
@@ -57,6 +46,16 @@ else{
                 break;
         }
     }
+$drivers = 0;
+foreach ($entry_data["entry"] as $clave => $valor) {
+    if(!empty($valor["1"]){
+        $drivers++;
+        echo $valor["1"]." - ".$valor["8"]."<br>";
+    }
+}
+if($drivers == 0)
+    echo "**No users Online**";
+else{
     if(isset($entry_data["pos"])){
         echo "<u>Carrera en tiempo real:</u></b><br>";
         echo "<table><tr><td>Posición</td><td>Corredor</td><td>Vueltas</td><td>Tiempo</td><td>Dif</td></tr><tr>";
